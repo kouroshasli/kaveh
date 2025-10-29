@@ -1,161 +1,252 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>فایل پیدا نشد</title>
-  <style>
-    /* ریست ساده */
-    * {box-sizing: border-box;margin:0;padding:0}
-    html,body {height:100%;}
-    body{
-      font-family: "Vazir", "IRANSans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background: linear-gradient(135deg,#f8fafc 0%, #eef2ff 50%, #fff 100%);
-      color:#213547;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:24px;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خطر پیش رو</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    .card{
-      width:100%;
-      max-width:740px;
-      background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.75));
-      border-radius:18px;
-      box-shadow: 0 10px 30px rgba(33,53,71,0.12);
-      padding:36px;
-      display:flex;
-      gap:24px;
-      align-items:center;
-      border:1px solid rgba(33,53,71,0.04);
-    }
+        body {
+            font-family: 'Roboto', 'Segoe UI', Arial, sans-serif;
+            background: #fff;
+            color: #202124;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
 
-    .illustration{
-      flex:0 0 170px;
-      height:170px;
-      border-radius:12px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:linear-gradient(135deg,#fff7f0,#fff);
-      box-shadow: inset 0 -6px 10px rgba(0,0,0,0.02);
-      position:relative;
-      overflow:hidden;
-    }
+        .warning-container {
+            max-width: 450px;
+            width: 100%;
+            text-align: center;
+        }
 
-    /* نماد فایلِ گمشده (SVG) */
-    .illustration svg { width:110px;height:110px; transform:translateY(-4px); }
+        .warning-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 24px;
+            position: relative;
+        }
 
-    .content{
-      flex:1;
-      min-width:0;
-    }
+        .warning-icon svg {
+            width: 100%;
+            height: 100%;
+        }
 
-    h1{
-      font-size:26px;
-      margin-bottom:8px;
-      letter-spacing:0.2px;
-    }
+        h1 {
+            font-size: 22px;
+            font-weight: 400;
+            color: #202124;
+            margin-bottom: 8px;
+            line-height: 28px;
+        }
 
-    p{
-      color:#4b6b80;
-      line-height:1.5;
-      margin-bottom:18px;
-      font-size:15px;
-    }
+        .site-url {
+            color: #5f6368;
+            font-size: 12px;
+            margin-bottom: 20px;
+            word-break: break-all;
+            direction: ltr;
+        }
 
-    .actions{
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-    }
+        .description {
+            font-size: 13px;
+            color: #5f6368;
+            line-height: 20px;
+            margin-bottom: 28px;
+            text-align: right;
+        }
 
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:10px 14px;
-      border-radius:10px;
-      font-weight:600;
-      text-decoration:none;
-      cursor:pointer;
-      border:0;
-      transition:transform .12s ease, box-shadow .12s ease;
-      box-shadow: 0 6px 18px rgba(33,53,71,0.06);
-      background:#fff;
-      color:#213547;
-    }
+        .description strong {
+            color: #202124;
+            font-weight: 500;
+        }
 
-    .btn:active{ transform:translateY(1px); }
+        .btn-back {
+            background: #1a73e8;
+            color: white;
+            padding: 8px 24px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+            margin-bottom: 32px;
+        }
 
-    .btn-primary{
-      background:linear-gradient(90deg,#5561f2,#7b8cff);
-      color:#fff;
-      box-shadow: 0 8px 24px rgba(86,96,255,0.18);
-    }
+        .btn-back:hover {
+            background: #1765cc;
+            box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
+        }
 
-    .muted{
-      background:transparent;
-      box-shadow:none;
-      color:#556b76;
-      padding:8px 12px;
-    }
+        .btn-back:active {
+            background: #1557b0;
+        }
 
-    /* افکت موج کوچک روی پس‌زمینهٔ نماد */
-    .illustration::after{
-      content:"";
-      position:absolute;
-      bottom:-20%;
-      left:-10%;
-      width:200%;
-      height:80%;
-      background:radial-gradient(closest-side, rgba(86,97,255,0.06), transparent 50%);
-      transform:rotate(15deg);
-    }
+        .details-section {
+            border-top: 1px solid #e8eaed;
+            padding-top: 20px;
+            text-align: right;
+        }
 
-    /* پاسخگو (responsive) */
-    @media (max-width:620px){
-      .card{flex-direction:column;align-items:center;text-align:center;padding:22px;}
-      .illustration{flex:0 0 140px;height:140px;}
-      h1{font-size:22px;}
-    }
-  </style>
+        .details-toggle {
+            background: none;
+            border: none;
+            color: #1a73e8;
+            font-size: 12px;
+            cursor: pointer;
+            padding: 4px 0;
+            font-family: inherit;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-weight: 500;
+        }
+
+        .details-toggle:hover {
+            text-decoration: underline;
+        }
+
+        .arrow {
+            display: inline-block;
+            transition: transform 0.2s;
+            font-size: 10px;
+        }
+
+        .arrow.open {
+            transform: rotate(180deg);
+        }
+
+        .details-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .details-content.show {
+            max-height: 400px;
+            padding-top: 16px;
+        }
+
+        .details-text {
+            font-size: 12px;
+            color: #5f6368;
+            line-height: 18px;
+            margin-bottom: 12px;
+        }
+
+        .details-text a {
+            color: #1a73e8;
+            text-decoration: none;
+        }
+
+        .details-text a:hover {
+            text-decoration: underline;
+        }
+
+        .warning-text {
+            color: #d93025;
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+
+        .proceed-link {
+            color: #1a73e8;
+            text-decoration: none;
+            font-size: 12px;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .proceed-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .warning-container {
+                max-width: 100%;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+
+            .warning-icon {
+                width: 56px;
+                height: 56px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <main class="card" role="main" aria-labelledby="title">
-    <div class="illustration" aria-hidden="true">
-      <!-- SVG: فایل با علامت ضربدر (نماد فایل پیدا نشد) -->
-      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <rect x="10" y="8" width="34" height="48" rx="4" fill="#FFF8EF" stroke="#FFD7A8" stroke-width="1.5"/>
-        <path d="M44 18V10L36 2" stroke="#FFD7A8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        <rect x="16" y="16" width="20" height="4" rx="1.5" fill="#FFECD1"/>
-        <circle cx="35.5" cy="38.5" r="12.5" fill="#fff" stroke="#FFD0C4" stroke-width="1.2"/>
-        <path d="M29 33.5L42 46.5" stroke="#FF7A7A" stroke-width="2.6" stroke-linecap="round"/>
-        <path d="M42 33.5L29 46.5" stroke="#FF7A7A" stroke-width="2.6" stroke-linecap="round"/>
-      </svg>
+    <div class="warning-container">
+        <div class="warning-icon">
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="32" cy="32" r="32" fill="#ea4335"/>
+                <path d="M30 18h4v20h-4z" fill="#fff"/>
+                <circle cx="32" cy="44" r="3" fill="#fff"/>
+            </svg>
+        </div>
+
+        <h1>خطر پیش رو</h1>
+        
+        <div class="site-url">example-malicious-site.com</div>
+
+        <div class="description">
+            مهاجمان ممکن است در <strong>example-malicious-site.com</strong> شما را فریب دهند تا کاری خطرناک مانند نصب نرم‌افزار یا افشای اطلاعات شخصی (مثل رمزهای عبور، شماره تلفن‌ها یا کارت‌های اعتباری) انجام دهید.
+        </div>
+
+        <button class="btn-back" onclick="goBack()">بازگشت به امنیت</button>
+
+        <div class="details-section">
+            <button class="details-toggle" onclick="toggleDetails()">
+                <span class="arrow" id="arrow">▼</span>
+                <span>پیشرفته</span>
+            </button>
+            
+            <div class="details-content" id="detailsContent">
+                <div class="details-text">
+                    گوگل Safe Browsing به تازگی <a href="#">محتوای مخرب</a> در example-malicious-site.com پیدا کرده است. وب‌سایت‌های مخرب معمولاً به عنوان سایت‌های بی‌خطر ظاهر می‌شوند.
+                </div>
+                <div class="details-text warning-text">
+                    ادامه دادن به این سایت ممکن است برای شما خطرناک باشد.
+                </div>
+                <a href="#" class="proceed-link" onclick="proceedAnyway(event)">ادامه به example-malicious-site.com (ناامن)</a>
+            </div>
+        </div>
     </div>
 
-    <div class="content">
-      <h1 id="title">اوه — فایلی وجود نداره</h1>
-      <p>متأسفیم! فایل مورد نظر پیدا نشد یا حذف شده. این ممکنه به خاطر لینک قدیمی، حذف شدن فایل یا نام اشتباه باشه.</p>
+    <script>
+        function goBack() {
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                alert('بازگشت به صفحه قبلی...');
+            }
+        }
 
-      <div class="actions" role="group" aria-label="اقدامات">
-        <a class="btn btn-primary" href="#" onclick="history.back(); return false;" title="بازگشت">
-          بازگشت
-        </a>
+        function toggleDetails() {
+            const content = document.getElementById('detailsContent');
+            const arrow = document.getElementById('arrow');
+            content.classList.toggle('show');
+            arrow.classList.toggle('open');
+        }
 
-        <a class="btn muted" href="/upload" title="بارگذاری فایل جدید">
-          بارگذاری فایل جدید
-        </a>
-
-        <a class="btn muted" href="/search" title="جستجوی فایل">
-          جستجوی فایل
-        </a>
-      </div>
-    </div>
-  </main>
+        function proceedAnyway(e) {
+            e.preventDefault();
+            const confirmed = confirm('آیا مطمئن هستید که می‌خواهید به این سایت ناامن بروید؟\n\nاین کار بسیار خطرناک است!');
+            if (confirmed) {
+                alert('در یک سایت واقعی، شما الان به سایت ناامن منتقل می‌شدید.');
+            }
+        }
+    </script>
 </body>
 </html>
